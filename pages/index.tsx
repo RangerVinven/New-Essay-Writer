@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
 
-	const [essays, setEssays] = useState(["Why Edward Snowden Should Not Be Extradited", "The Consequences of Cyber War", "TypeScript vs JavaScript", "The Difference Between Penetration Testing and Bug Bounty", "Is There A Best Programming Language?", "How To Learn To Programming"]);
+	const [essays, setEssays] = useState([]);
 	
 	// Gets the user's essays
 	useEffect(() => {
