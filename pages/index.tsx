@@ -22,6 +22,10 @@ export default function Home() {
 						return <Link href={"/" + encodeURIComponent(essay)}><EssayTile name={essay} /></Link>
 					})
 				}
+
+				<div className="flex text-center justify-center items-center hover:cursor-pointer w-64 h-64 border-gray-400 border-dashed border-2">
+					<h3 className="text-gray-400 text-6xl font-thin">+</h3>
+				</div>
 			</div>
 		</div>
 	)
