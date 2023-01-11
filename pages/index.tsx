@@ -7,7 +7,7 @@ import AddEssayModal from "../components/HomePage/AddEssayModal";
 
 export default function Home() {
 
-	const [essays, setEssays] = useState([]);
+	const [essays, setEssays] = useState<string[]>([]);
 
     const { isOpen, onOpen, onClose } = useDisclosure() // For the add essay modal
 
@@ -19,8 +19,8 @@ export default function Home() {
 	}, []);
 
 	return (
-		<div className="w-full h-screen flex justify-center items-center">
-			<AddEssayModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+		<div className="w-full h-screen my-16 flex justify-center items-center">
+			<AddEssayModal essays={essays} setEssays={setEssays} isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
 
 			<div className="flex flex-wrap justify-evenly w-2/3">
 				{
