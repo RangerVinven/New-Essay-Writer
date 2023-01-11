@@ -24,7 +24,7 @@ export default function Home() {
 	}, []);
 
 	return (
-		<div className="w-full h-screen my-16 flex justify-center items-center">
+		<div className="w-full h-fit my-16 flex justify-center items-center">
 			<AddEssayModal essays={essays} setEssays={setEssays} isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
 
 			<div className="flex flex-wrap justify-evenly w-2/3">
