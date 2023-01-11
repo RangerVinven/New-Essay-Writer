@@ -1,13 +1,17 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, useDisclosure, Input } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from "react";
 
 type Props = {
+    essays: string[],
+    setEssays: Function,
     isOpen: boolean
     onOpen: () => void
     onClose: () => void
 }
 
 export default function AddEssayModal(props: Props) {
+
+    const [essayName, setEssayName] = useState("");
 
     return (
         <div>
@@ -17,11 +21,26 @@ export default function AddEssayModal(props: Props) {
                     <ModalHeader>Create An Essay</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <Input placeholder="Your Essay Name" />
+                        <Input placeholder="Your Essay Name" onChange={(event) => {
+                            setEssayName(event.target.value);
+                        }} />
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme='blue' mr={3}>
+                        <Button colorScheme='green' mr={3} onClick={() => {
+                            fetch("http://localhost:3000/api/AddEssay", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    "EssayName": essayName
+                                })
+                            }).then(() => {
+                                props.setEssays([essayName, ...props.essays]);
+                                props.onClose();
+                            })
+                        }}>
                             Create
                         </Button>
                         <Button variant='outline' onClick={props.onClose}>Cancel</Button>
