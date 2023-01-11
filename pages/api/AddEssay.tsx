@@ -16,8 +16,10 @@ export default async function handler(
         data: {
             Name: req.body.EssayName
         }
-    }).then(() => {
-        res.status(200).json({});
+    }).then((essay) => {
+        res.status(200).json({
+            id: essay.id
+        });
     }).catch(() => {
         res.status(500).json({});
     })
