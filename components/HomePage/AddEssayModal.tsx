@@ -2,7 +2,7 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, Modal
 import React, { useState } from "react";
 
 type Props = {
-    essays: string[],
+    essays: Object[],
     setEssays: Function,
     isOpen: boolean
     onOpen: () => void
@@ -36,8 +36,12 @@ export default function AddEssayModal(props: Props) {
                                 body: JSON.stringify({
                                     "EssayName": essayName
                                 })
-                            }).then(() => {
-                                props.setEssays([essayName, ...props.essays]);
+                            }).then(data => data.json()).then((res) => {
+                                // Adds the essay to the essays
+                                props.setEssays([{
+                                    id: res.id,
+                                    Name: essayName
+                                }, ...props.essays]);
                                 props.onClose();
                             })
                         }}>
