@@ -30,7 +30,7 @@ export default function Home() {
 			<div className="flex flex-wrap justify-evenly w-2/3">
 				{
 					essays.map((essay) => {
-						return <Link href={"/" + encodeURIComponent(essay.Name)}><EssayTile key={essay.id} name={essay.Name} /></Link>
+						return <EssayTile key={essay.id} id={essay.id} name={essay.Name} />
 					})
 				}
 
