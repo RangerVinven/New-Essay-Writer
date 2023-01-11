@@ -5,9 +5,14 @@ import Link from 'next/link'
 import { useDisclosure } from "@chakra-ui/react";
 import AddEssayModal from "../components/HomePage/AddEssayModal";
 
+type Essay = {
+	id: number,
+	Name: string
+}
+
 export default function Home() {
 
-	const [essays, setEssays] = useState<string[]>([]);
+	const [essays, setEssays] = useState<Essay[]>([]);
 
     const { isOpen, onOpen, onClose } = useDisclosure() // For the add essay modal
 
@@ -24,8 +29,8 @@ export default function Home() {
 
 			<div className="flex flex-wrap justify-evenly w-2/3">
 				{
-					essays.map(essay => {
-						return <Link href={"/" + encodeURIComponent(essay)}><EssayTile name={essay} /></Link>
+					essays.map((essay) => {
+						return <Link href={"/" + encodeURIComponent(essay.Name)}><EssayTile key={essay.id} name={essay.Name} /></Link>
 					})
 				}
 
