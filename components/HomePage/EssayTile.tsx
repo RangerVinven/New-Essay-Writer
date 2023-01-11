@@ -2,9 +2,12 @@ import { DeleteIcon, EditIcon } from "@chakra-ui/icons"
 import { IconButton, useDisclosure } from "@chakra-ui/react"
 import Link from "next/link"
 import React from "react"
+import { Essay } from "../../lib/Types"
 import EditEssayModal from "./EditEssayModal"
 
 type Props = {
+    essays: Essay[],
+    setEssays: Function,
     id: number,
     name: string
 }
@@ -22,7 +25,7 @@ export default function EssayTile(props: Props) {
 
             <Link href={"/" + encodeURIComponent(props.name)}>
                 <div className="h-64 w-64 mb-11 rounded-md bg-gray-400 relative flex justify-center items-center p-2 hover:cursor-pointer">
-                    <EditEssayModal oldEssayId={props.id} isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+                    <EditEssayModal essays={props.essays} setEssays={props.setEssays} oldEssayId={props.id} isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
 
                     <h3 className="text-center text-xl">{props.name}</h3>
                 </div>
