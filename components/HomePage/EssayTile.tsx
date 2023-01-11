@@ -15,8 +15,8 @@ export default function EssayTile(props: Props) {
 
     return (
         <div className="w-fit h-fit relative">
-            <div className="absolute z-10 right-0 top-0">
-                    <IconButton onClick={onOpen} aria-label="Edit Essay Name" icon={<EditIcon />} colorScheme="blue"/>
+            <div className="absolute z-10 right-0 top-0 mt-2 mr-2">
+                    <IconButton className="mr-2" onClick={onOpen} aria-label="Edit Essay Name" icon={<EditIcon />} colorScheme="blue"/>
                     <IconButton aria-label="Delete Essay" icon={<DeleteIcon />} colorScheme="red"/>
             </div>
 
