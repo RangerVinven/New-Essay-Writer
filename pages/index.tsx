@@ -4,11 +4,7 @@ import { useEffect, useState } from "react";
 import Link from 'next/link'
 import { useDisclosure } from "@chakra-ui/react";
 import AddEssayModal from "../components/HomePage/AddEssayModal";
-
-type Essay = {
-	id: number,
-	Name: string
-}
+import { Essay } from "../lib/Types";
 
 export default function Home() {
 
@@ -30,7 +26,7 @@ export default function Home() {
 			<div className="flex flex-wrap justify-evenly w-2/3">
 				{
 					essays.map((essay) => {
-						return <EssayTile key={essay.id} id={essay.id} name={essay.Name} />
+						return <EssayTile essays={essays} setEssays={setEssays} key={essay.id} id={essay.id} name={essay.Name} />
 					})
 				}
 
