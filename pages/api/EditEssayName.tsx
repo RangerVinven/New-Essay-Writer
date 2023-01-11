@@ -14,12 +14,13 @@ export default async function handler(
             id: req.body.id
         },
         data: {
-            Name: req.body.NewEssayName
+            Name: req.body.NewEssayName,
+            Last_Modified: new Date
         }
     }).then((essay) => {
         res.status(200).json({
             id: essay.id,
-            name: essay.Name
+            name: essay.Name,
         });
     }).catch(() => {
         res.status(500).json({});
