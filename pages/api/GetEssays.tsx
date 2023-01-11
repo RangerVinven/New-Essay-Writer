@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next"
 import { prisma } from "../../lib/PrismaClient";
 
 type Data = {
-  	EssayNames: string[]
+  	EssayNames: Object
 }
 
 export default async function handler(
@@ -13,21 +13,15 @@ export default async function handler(
 	// Gets essays
 	const essayNamesObject = await prisma.essays.findMany({
 		select: {
+			id: true,
 			Name: true
 		},
 		orderBy: {
 			Last_Modified: "desc"
 		}
-	});
-
-	// Extracts the essay names from the essayNames object
-	let names: string[] = [];
-	essayNamesObject.forEach(name => {
-		names.push(name.Name);
-	});
-	
+	});	
 
 	res.status(200).json({
-		EssayNames: names
+		EssayNames: essayNamesObject
 	});
 }
