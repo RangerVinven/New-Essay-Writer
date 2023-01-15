@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useDisclosure } from "@chakra-ui/react";
 import AddEssayModal from "../components/HomePage/AddEssayModal";
 import { Essay } from "../lib/Types";
-import LoadingSpinner from "../components/HomePage/General/LoadingSpinner";
+import LoadingSpinner from "../components/General/LoadingSpinner";
 
 export default function Home() {
 
