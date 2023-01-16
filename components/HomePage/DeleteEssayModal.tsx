@@ -29,7 +29,7 @@ export default function DeleteEssayModal(props: Props) {
 
                     <ModalFooter>
                         <Button colorScheme='red' mr={3} onClick={() => {
-                            fetch("http://localhost:3000/api/DeleteEssay", {
+                            fetch("http://localhost:3000/api/Essays/DeleteEssay", {
                                 method: "DELETE",
                                 headers: {
                                     "Content-Type": "application/json"

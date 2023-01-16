@@ -28,7 +28,7 @@ export default function AddEssayModal(props: Props) {
 
                     <ModalFooter>
                         <Button colorScheme='green' mr={3} onClick={() => {
-                            fetch("http://localhost:3000/api/AddEssay", {
+                            fetch("http://localhost:3000/api/Essays/AddEssay", {
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json"
