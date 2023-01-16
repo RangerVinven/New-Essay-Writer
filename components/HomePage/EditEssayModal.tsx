@@ -30,7 +30,7 @@ export default function EditEssayModal(props: Props) {
 
                     <ModalFooter>
                         <Button colorScheme='green' mr={3} onClick={() => {
-                            fetch("http://localhost:3000/api/EditEssayName", {
+                            fetch("http://localhost:3000/api/Essays/EditEssayName", {
                                 method: "PUT",
                                 headers: {
                                     "Content-Type": "application/json"

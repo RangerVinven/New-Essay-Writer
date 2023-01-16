@@ -17,7 +17,7 @@ export default function Home() {
 	useEffect(() => {
 		setLoading(true); // Starts the loading animation
 
-		fetch("http://localhost:3000/api/GetEssays").then(data => data.json()).then(essayNames => {
+		fetch("http://localhost:3000/api/Essays/GetEssays").then(data => data.json()).then(essayNames => {
 			
 			setLoading(false); // Starts the loading animation
 			setEssays(essayNames.EssayNames);
