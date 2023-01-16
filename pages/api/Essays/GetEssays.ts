@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next"
-import { prisma } from "../../lib/PrismaClient";
+import { prisma } from "../../../lib/PrismaClient";
 
 type Data = {
   	EssayNames: Object
