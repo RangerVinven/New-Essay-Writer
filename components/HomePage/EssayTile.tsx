@@ -25,7 +25,12 @@ export default function EssayTile(props: Props) {
                     <IconButton onClick={onDeleteOpen} aria-label="Delete Essay" icon={<DeleteIcon />} colorScheme="red"/>
             </div>
 
-            <Link href={"/" + encodeURIComponent(props.name)}>
+            <Link href={{
+                pathname: "/" + props.name,
+                query: {
+                    id: props.id
+                }
+            }}>
                 <div className="h-64 w-64 mb-11 rounded-md bg-gray-400 relative flex justify-center items-center p-2 hover:cursor-pointer">
                     <EditEssayModal essays={props.essays} setEssays={props.setEssays} oldEssayId={props.id} isOpen={isEditOpen} onOpen={onEditOpen} onClose={onEditClose} />
                     <DeleteEssayModal essays={props.essays} setEssays={props.setEssays} essayId={props.id} essay={'"' + props.name + '"'} isOpen={isDeleteOpen} onOpen={onDeleteOpen} onClose={onDeleteClose} />

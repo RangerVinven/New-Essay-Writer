@@ -21,7 +21,6 @@ export default function Home() {
 			
 			setLoading(false); // Starts the loading animation
 			setEssays(essayNames.EssayNames);
-
 		});
 	}, []);
 

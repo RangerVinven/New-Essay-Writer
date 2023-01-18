@@ -4,11 +4,12 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 
 import EssayEditOption from "../components/EssayEdit/EssayEditOption";
 import EditHeadings from '../components/EssayEdit/EditHeadings';
+import LoadingSpinner from '../components/General/LoadingSpinner';
 
 export default function Essay() {
     
     const router = useRouter();
-    const { EssayName } = router.query;
+    const { EssayName, id } = router.query;
 
     return (
         <div className="h-screen">
@@ -18,9 +19,6 @@ export default function Essay() {
 
             <div className="flex h-full justify-center mt-4">
                 <div className="w-full h-full flex justify-center items-center">
-                    {/* <EssayEditOption title="Headings" />
-                    <EssayEditOption title="First Draft" />
-                    <EssayEditOption title="Edit Sentences" /> */}
 
                     <Tabs variant='soft-rounded' colorScheme='green' align="center" className="w-1/3 h-full">
                     <TabList>
@@ -30,7 +28,9 @@ export default function Essay() {
                     </TabList>
                     <TabPanels>
                         <TabPanel>
-                            <EditHeadings essayId={1} />
+                            {
+                                router.isReady ? <EditHeadings essayId={Number(id)} /> : <LoadingSpinner />
+                            }
                         </TabPanel>
                         
                         <TabPanel>
