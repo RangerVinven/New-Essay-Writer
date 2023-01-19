@@ -2,6 +2,7 @@ import { AddIcon } from '@chakra-ui/icons';
 import { IconButton, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
 import LoadingSpinner from '../General/LoadingSpinner';
+import Heading from './Heading';
 
 type Props = {
     essayId: number
@@ -64,9 +65,7 @@ export default function EditHeadings(props: Props) {
                 loading ? <LoadingSpinner /> : <div className="bg-gray-50 rounded-md w-full">
                     {
                         headings.map((heading: Header) => {
-                            return <div className="mb-2 text-center">
-                                <h3 className="text-xl font-medium">{ heading.Name }</h3>
-                            </div>
+                            return <Heading headings={headings} setHeadings={setHeadings} header={heading} />
                         })
                     }
                     <div className="mt-5">
