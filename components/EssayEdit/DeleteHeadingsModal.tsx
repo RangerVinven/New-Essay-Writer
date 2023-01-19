@@ -29,7 +29,7 @@ export default function DeleteHeadingModal(props: Props) {
 
                     <ModalFooter>
                         <Button colorScheme='red' mr={3} onClick={() => {
-                            fetch("http://localhost:3000/api/Headings/DeleteHeader", {
+                            fetch("http://localhost:3000/api/Headings/DeleteHeading", {
                                 method: "DELETE",
                                 headers: {
                                     "Content-Type": "application/json"
@@ -43,7 +43,7 @@ export default function DeleteHeadingModal(props: Props) {
                                     return header.id !== props.headerId;
                                 });
 
-                                props.setHeadings([...headings]);
+                                props.setHeadings(headings);
                             });
 
                             props.onClose();
