@@ -5,6 +5,7 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import EssayEditOption from "../components/EssayEdit/EssayEditOption";
 import EditHeadings from '../components/EssayEdit/EditHeadings';
 import LoadingSpinner from '../components/General/LoadingSpinner';
+import FirstDraft from '../components/FirstDraft/FirstDraft';
 
 export default function Essay() {
     
@@ -20,7 +21,7 @@ export default function Essay() {
             <div className="flex h-full justify-center mt-4">
                 <div className="w-full h-full flex justify-center items-center">
 
-                    <Tabs variant='soft-rounded' colorScheme='green' align="center" className="w-1/3 h-full">
+                    <Tabs isLazy={true} variant='soft-rounded' colorScheme='green' align="center" className="w-1/3 h-full">
                     <TabList>
                         <Tab>Headings</Tab>
                         <Tab>First Draft</Tab>
@@ -34,7 +35,9 @@ export default function Essay() {
                         </TabPanel>
                         
                         <TabPanel>
-                            <p>two!</p>
+                            {
+                                router.isReady ? <FirstDraft essayId={Number(id)} /> : <LoadingSpinner />
+                            }
                         </TabPanel>
                         
                         <TabPanel>
