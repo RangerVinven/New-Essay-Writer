@@ -21,7 +21,7 @@ export default function DeleteHeadingModal(props: Props) {
             <Modal isOpen={props.isOpen} onClose={props.onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Delete Your Essay</ModalHeader>
+                    <ModalHeader>Delete Your Heading</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
                         Are You Sure You Want To Delete <b>{props.header}</b>? Once it's deleted, it can't be recovered.
