@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Header } from '../../lib/Types';
 import LoadingSpinner from '../General/LoadingSpinner';
+import HeaderEdit from './HeaderEdit';
 
 type Props = {
     essayId: number
@@ -27,14 +28,12 @@ export default function FirstDraft(props: Props) {
     }, []);
 
     return (
-        <div className="h-screen">
+        <div className="h-screen  w-full">
             {
-                loading ? <LoadingSpinner /> : <div className="bg-gray-50 rounded-md w-full">
+                loading ? <LoadingSpinner /> : <div className="bg-gray-50 rounded-md w-1/2 p-5">
                     {
-                        headings.map(heading => {
-                            return <div>
-                                <h1>{ heading.Name }</h1>
-                            </div>
+                        headings.map(header => {
+                            return <HeaderEdit header={header} />
                         })
                     }
                 </div>
