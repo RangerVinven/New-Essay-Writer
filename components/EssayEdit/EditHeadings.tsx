@@ -60,7 +60,7 @@ export default function EditHeadings(props: Props) {
     }, []);
 
     return (
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center w-1/3">
             {
                 loading ? <LoadingSpinner /> : <div className="bg-gray-50 rounded-md w-full">
                     {
