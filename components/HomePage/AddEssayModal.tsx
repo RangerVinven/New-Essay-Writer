@@ -21,7 +21,7 @@ export default function AddEssayModal(props: Props) {
                     <ModalHeader>Create An Essay</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <Input placeholder="Your Essay Name" onChange={(event) => {
+                        <Input value={essayName} placeholder="Your Essay Name" onChange={(event) => {
                             setEssayName(event.target.value);
                         }} />
                     </ModalBody>
