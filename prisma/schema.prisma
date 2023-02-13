@@ -8,12 +8,15 @@ datasource db {
 }
 
 model Alternative_Sentences {
-  id                      Int       @id @default(autoincrement()) @db.UnsignedInt
-  Alternative_To_Sentence Int       @db.UnsignedInt
-  Sentence                String    @db.VarChar(1000)
-  Sentences               Sentences @relation(fields: [Alternative_To_Sentence], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Alternative_To_Sentence_To_Sentence")
+  id                      Int        @id @default(autoincrement()) @db.UnsignedInt
+  Alternative_To_Sentence Int        @db.UnsignedInt
+  Sentence                String     @db.VarChar(1000)
+  Paragraph               Int        @db.UnsignedInt
+  Sentences               Sentences  @relation(fields: [Alternative_To_Sentence], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "Alternative_To_Sentence_To_Sentence")
+  Paragraphs              Paragraphs @relation(fields: [Paragraph], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "Paragraph_To_Paragraph")
 
   @@index([Alternative_To_Sentence], map: "Alternative_To_Sentence_To_Sentence")
+  @@index([Paragraph], map: "Paragraph_To_Paragraph")
 }
 
 model Essays {
@@ -35,11 +38,12 @@ model Headers {
 }
 
 model Paragraphs {
-  id              Int         @id @default(autoincrement()) @db.UnsignedInt
-  Header          Int         @db.UnsignedInt
-  Order_In_Header Int
-  Headers         Headers     @relation(fields: [Header], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Paragraphs_To_Headers")
-  Sentences       Sentences[]
+  id                    Int                     @id @default(autoincrement()) @db.UnsignedInt
+  Header                Int                     @db.UnsignedInt
+  Order_In_Header       Int
+  Alternative_Sentences Alternative_Sentences[]
+  Headers               Headers                 @relation(fields: [Header], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Paragraphs_To_Headers")
+  Sentences             Sentences[]
 
   @@index([Header], map: "Paragraphs_To_Headers")
 }
@@ -50,7 +54,7 @@ model Sentences {
   Sentence              String                  @db.VarChar(1000)
   Order_In_Paragraph    Int
   Alternative_Sentences Alternative_Sentences[]
-  Paragraphs            Paragraphs              @relation(fields: [Paragraph], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Sentence_To_Paragraph")
+  Paragraphs            Paragraphs              @relation(fields: [Paragraph], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "Sentence_To_Paragraph")
 
   @@index([Paragraph], map: "Sentence_To_Paragraph")
 }
