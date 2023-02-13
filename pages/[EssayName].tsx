@@ -13,15 +13,15 @@ export default function Essay() {
     const { EssayName, id } = router.query;
 
     return (
-        <div className="h-screen">
+        <div className="h-screen w-screen ">
             <div className="mt-2 flex justify-center items-center">
                 <h1 className="text-2xl">{EssayName}</h1>
             </div>
 
-            <div className="flex h-full justify-center mt-4">
+            <div className="flex w-full h-full justify-center mt-4">
                 <div className="w-full h-full flex justify-center items-center">
 
-                    <Tabs isLazy={true} variant='soft-rounded' colorScheme='green' align="center" className="w-1/3 h-full">
+                    <Tabs isLazy={true} variant='soft-rounded' colorScheme='green' align="center" className="h-full w-full">
                     <TabList>
                         <Tab>Headings</Tab>
                         <Tab>First Draft</Tab>
