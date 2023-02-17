@@ -54,7 +54,10 @@ export default function EditSentences(props: Props) {
                     <div className="w-1/4">
                         {
                             headings.map((heading: Header) => {
-                                return <h3 className="mb-5 text-lg font-medium text-left hover:cursor-pointer">{heading.Name}</h3>
+                                return <h3 onClick={() => {
+                                    setLoadingSentences(true);
+                                    getSentences(heading.id, setSentences, setLoadingSentences);
+                                }} className="mb-5 text-lg font-medium text-left hover:cursor-pointer">{heading.Name}</h3>
                             })   
                         }
                     </div>
