@@ -6,6 +6,7 @@ import EssayEditOption from "../components/EssayEdit/EssayEditOption";
 import EditHeadings from '../components/EssayEdit/EditHeadings';
 import LoadingSpinner from '../components/General/LoadingSpinner';
 import FirstDraft from '../components/FirstDraft/FirstDraft';
+import EditSentences from '../components/EditSentences/EditSentences';
 
 export default function Essay() {
     
@@ -41,7 +42,9 @@ export default function Essay() {
                         </TabPanel>
                         
                         <TabPanel>
-                            <p>three!</p>
+                            {
+                                router.isReady ? <EditSentences essayId={Number(id)} /> : <LoadingSpinner />
+                            }
                         </TabPanel>
                     </TabPanels>
                     </Tabs>
