@@ -79,12 +79,12 @@ export default function EditSentences(props: Props) {
                     </div>
 
                     <div className="w-1/2">
-                        <div className="bg-gray-50 margin-4 rounded-md">
+                        <div className="bg-gray-50 m-2 p-1 rounded-md">
                             {
                                 loadingSentences ? <LoadingSpinner /> : <div>
                                     {
                                         sentences.map((sentence: Sentence) => {
-                                            return <h3 className="mb-5 hover:cursor-pointer">{sentence.Sentence}</h3>
+                                            return <h3 className="mb-10 hover:cursor-pointer">{sentence.Sentence}</h3>
                                         }) 
                                     }
                                 </div>
