@@ -91,8 +91,6 @@ export default function EditSentences(props: Props) {
                             }
                         </div>
                     </div>
-
-                    <div className="w-1/4"></div>
                 </div>
             }
         </div>
