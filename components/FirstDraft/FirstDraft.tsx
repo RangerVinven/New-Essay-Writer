@@ -33,7 +33,7 @@ export default function FirstDraft(props: Props) {
                 loading ? <LoadingSpinner /> : <div className="bg-gray-50 rounded-md w-1/2 p-5">
                     {
                         headings.map(header => {
-                            return <HeaderEdit header={header} />
+                            return <HeaderEdit header={header} essayId={props.essayId} />
                         })
                     }
                 </div>
