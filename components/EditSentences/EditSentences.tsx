@@ -27,6 +27,9 @@ export default function EditSentences(props: Props) {
     const [headings, setHeadings] = useState([]);
     const [sentences, setSentences] = useState([]);
 
+    // The number is for the order in the essay, not the header id
+    const [selectedHeader, setSelectedHeader] = useState(1);
+
     const [loadingHeaders, setLoadingHeaders] = useState(true);
     const [loadingSentences, setLoadingSentences] = useState(true);
 
@@ -54,10 +57,23 @@ export default function EditSentences(props: Props) {
                     <div className="w-1/4">
                         {
                             headings.map((heading: Header) => {
+                                console.log(heading);
+                                
+                                let styling = "mb-5 text-lg text-left hover:cursor-pointer";
+
+                                // Makes the selected header's font bold
+                                if (heading.Order_In_Essay === selectedHeader) {
+                                    styling = styling + " font-bold";
+                                } else {
+                                    styling = styling + " font-medium";
+                                }
+
                                 return <h3 onClick={() => {
                                     setLoadingSentences(true);
                                     getSentences(heading.id, setSentences, setLoadingSentences);
-                                }} className="mb-5 text-lg font-medium text-left hover:cursor-pointer">{heading.Name}</h3>
+
+                                    setSelectedHeader(heading.Order_In_Essay);
+                                }} className={styling}>{heading.Name}</h3>
                             })   
                         }
                     </div>
