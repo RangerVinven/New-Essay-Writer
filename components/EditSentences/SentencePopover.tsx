@@ -27,7 +27,7 @@ export default function SentencePopover(props: Props) {
 
     const [newSentence, setNewSentence] = useState("");
 
-    const [selectedSentence, setSelectedSentence] = useState("1");
+    const [selectedSentence, setSelectedSentence] = useState(props.sentence.Sentence);
     const [alternativeSentences, setAlternativeSentences] = useState<AlternativeSentence[]>([]);
 
     const [alternativeSentencesLoading, setAlternativeSentencesLoading] = useState(false);
@@ -48,9 +48,15 @@ export default function SentencePopover(props: Props) {
                     {
                         alternativeSentencesLoading ? <LoadingSpinner /> : <RadioGroup colorScheme="green" onChange={setSelectedSentence} value={selectedSentence}>
                         <Stack direction='column'>
+                            <Radio value={props.sentence.Sentence}>
+                                <h3 className="text-left">
+                                    { props.sentence.Sentence }
+                                </h3>
+                            </Radio>
+
                             {
                                 alternativeSentences.map(sentence => {
-                                    return <Radio value={sentence.id.toString()}>
+                                    return <Radio value={sentence.Sentence}>
                                         <h3 className="text-left">
                                             { sentence.Sentence }
                                         </h3>
