@@ -16,3 +16,10 @@ export type Sentence = {
     Sentence: string,
     Order_In_Paragraph: number
 }
+
+export type AlternativeSentence = {
+    id: number,
+    Paragraph: number,
+    Sentence: string,
+    Alternative_To_Sentence: number
+}
