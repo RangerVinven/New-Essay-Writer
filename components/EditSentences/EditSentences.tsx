@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import LoadingSpinner from '../General/LoadingSpinner';
 import { Header } from '../../lib/Types';
 import { Sentence } from '../../lib/Types';
+import SentencePopover from './SentencePopover';
 
 type Props = {
     essayId: number
@@ -84,7 +85,7 @@ export default function EditSentences(props: Props) {
                                 loadingSentences ? <LoadingSpinner /> : <div>
                                     {
                                         sentences.map((sentence: Sentence) => {
-                                            return <h3 className="mb-10 hover:cursor-pointer">{sentence.Sentence}</h3>
+                                            return <SentencePopover sentence={sentence} />
                                         }) 
                                     }
                                 </div>
