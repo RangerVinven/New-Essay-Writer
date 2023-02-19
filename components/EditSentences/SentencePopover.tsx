@@ -73,7 +73,22 @@ export default function SentencePopover(props: Props) {
                             onChange={(event) => setNewSentence(event.target.value)}
                         />
                         <InputRightElement>
-                            <IconButton aria-label='Add your new sentence' className="ml-3" icon={<AddIcon />} />
+                            <IconButton onClick={async () => {
+                                fetch("http://localhost:3000/api/AlternativeSentence/MakeAlternativeSentence", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify({
+                                        newSentence: newSentence,
+                                        paragraph: props.sentence.Paragraph,
+                                        sentenceId: props.sentence.id
+                                    })
+                                }).then(response => response.json()).then(response => {
+                                    setAlternativeSentences([...alternativeSentences, response.sentence]);
+                                })
+
+                            }} aria-label='Add your new sentence' className="ml-3" icon={<AddIcon />} />
                         </InputRightElement>
                     </InputGroup>
                 </PopoverBody>
