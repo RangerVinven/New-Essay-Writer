@@ -5,7 +5,6 @@ import { prisma } from "../../../lib/PrismaClient";
 type Data = {
   	success?: boolean
     error?: string
-    sentences?: {}
 }
 
 export default async function handler(
@@ -24,6 +23,11 @@ export default async function handler(
         data: {
             Sentence: req.body.alternativeSentence
         }
+    }).catch(() => {
+        res.status(500).json({
+            success: false,
+            error: "Something went wrong"
+        })
     });
 
     // Update the alternative sentence to the sentence (swaps the alternative and the regular sentence)
@@ -34,5 +38,14 @@ export default async function handler(
         data: {
             Sentence: req.body.sentence
         }
+    }).catch(() => {
+        res.status(500).json({
+            success: false,
+            error: "Something went wrong"
+        })
     });
+
+    res.status(200).json({
+        success: true
+    })
 }
