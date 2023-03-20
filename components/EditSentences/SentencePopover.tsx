@@ -24,23 +24,19 @@ async function getAlternativeSentences(sentenceId: number, setAlternativeSentenc
 }
 
 async function updateAlternativeSentence(alternativeSentence: AlternativeSentence, sentence: Sentence) {
-
-    // Sets the new selectedSentence
-    // setSelectedSentence(alternativeSentence.id.toString());
-
     // Updates the sentence to be the selected sentence
-    fetch("http://localhost:3000", {
-        method: "UPDATE",
+    fetch("http://localhost:3000/api/AlternativeSentence/SetAlternativeSentence", {
+        method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            alternativeId: alternativeSentence.id,
-            sentenceId: sentence.id,
-            alternativeSentence: alternativeSentence.Sentence,
-            sentence: sentence.Sentence
+            "alternativeSentenceId": alternativeSentence.id,
+            "sentenceId": sentence.id,
+            "alternativeSentence": alternativeSentence.Sentence,
+            "sentence": sentence.Sentence
         })
-    })
+    });   
 }
 
 export default function SentencePopover(props: Props) {
@@ -51,10 +47,6 @@ export default function SentencePopover(props: Props) {
     const [alternativeSentences, setAlternativeSentences] = useState<AlternativeSentence[]>([]);
 
     const [alternativeSentencesLoading, setAlternativeSentencesLoading] = useState(false);
-
-    useEffect(() => {
-        console.log(selectedSentence)
-    }, [selectedSentence]);
 
     return (
         <Popover placement='top' isLazy>
@@ -70,37 +62,6 @@ export default function SentencePopover(props: Props) {
                 <PopoverArrow />
                 <PopoverBody>
                     {
-                        // alternativeSentencesLoading ?
-                        // <LoadingSpinner />
-                        // : <RadioGroup colorScheme="green" onChange={setSelectedSentence} value={props.sentence.Sentence.toString()}>
-                        //     <Stack direction='column'>
-                        //         <Radio value={props.sentence.Sentence.toString()}>
-                        //             <h3 className="text-left">
-                        //                 { props.sentence.Sentence }
-                        //             </h3>
-                        //         </Radio>
-
-                        //         {
-                        //             alternativeSentences.map(alternativeSentence => {
-                        //                 return (
-                        //                     <Radio
-                        //                     key={alternativeSentence.id}
-                        //                     // onClick={() => updateAlternativeSentence(alternativeSentence, props.sentence)}
-                        //                     value={alternativeSentence.Sentence.toString()}
-                        //                     // isChecked={sentence.Sentence === selectedSentence}
-                        //                     >
-
-                        //                         <h3 className="text-left">
-                        //                             { alternativeSentence.Sentence }
-                        //                         </h3>
-
-                        //                     </Radio>
-                        //                 )
-                        //             })
-                        //         }
-                        //     </Stack>
-                        // </RadioGroup>
-
                         alternativeSentencesLoading ? <LoadingSpinner /> : <RadioGroup onChange={setSelectedSentence} defaultValue={props.sentence.id.toString()}>
                             <Radio value={props.sentence.id.toString()}>
                                 <h3> {props.sentence.Sentence} </h3>
@@ -109,9 +70,11 @@ export default function SentencePopover(props: Props) {
                             {
                                 alternativeSentences.map((sentence: AlternativeSentence) => {
                                     return (
-                                        <Radio value={sentence.id.toString()}>
-                                            <h3> {sentence.Sentence} </h3>
-                                        </Radio>
+                                        <div onClick={() => updateAlternativeSentence(sentence, props.sentence)}>
+                                            <Radio value={sentence.id.toString()} key={sentence.id}>
+                                                <h3> {sentence.Sentence} </h3>
+                                            </Radio>
+                                        </div>
                                     )
                                 })
                             }
