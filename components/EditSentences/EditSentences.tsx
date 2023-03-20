@@ -57,9 +57,7 @@ export default function EditSentences(props: Props) {
                 loadingHeaders ? <LoadingSpinner /> : <div className="w-full flex">
                     <div className="w-1/4">
                         {
-                            headings.map((heading: Header) => {
-                                console.log(heading);
-                                
+                            headings.map((heading: Header) => {                                
                                 let styling = "mb-5 text-lg text-left hover:cursor-pointer";
 
                                 // Makes the selected header's font bold
